@@ -2,14 +2,17 @@ from rest_framework import serializers
 
 from .models import Client, Address
 
-class ClientSerializer(serializers.ModelSerializer):
+class ClientSerializerList(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = (
             'id',
-            'first_name',
-            'last_name',
+            'full_name',
             'email',
-            'main_phone',
-            'alternative_phone'
+            'any_phone'
         )
+
+class ClientSerializerFull(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'

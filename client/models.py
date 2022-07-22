@@ -7,9 +7,7 @@ from django.contrib.auth.models import User
 class Client(models.Model):
     title = models.CharField(max_length=5, verbose_name='Title', null=True, blank=True)
     first_name = models.CharField(max_length=150, verbose_name='First Name')
-    middle_name = models.CharField(max_length=150, verbose_name='Middle Name', null=True, blank=True)
     last_name = models.CharField(max_length=150, verbose_name='Last Name')
-    suffix = models.CharField(max_length=15, verbose_name='Suffix', null=True, blank=True)
     email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True)
     main_phone = PhoneNumberField(null=True, blank=True)
     alternative_phone = PhoneNumberField(null=True, blank=True)
@@ -25,6 +23,13 @@ class Client(models.Model):
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    @property
+    def any_phone(self):
+        if self.main_phone:
+            return str(self.main_phone)
+        else:
+            return str(self.alternative_phone)
 
 class Address(models.Model):
     id_client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Cliente')
