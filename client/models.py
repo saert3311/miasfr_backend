@@ -1,14 +1,15 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import User
+from django.conf import settings
 
+User = settings.AUTH_USER_MODEL
 # Create your models here.
 
 class Client(models.Model):
-    title = models.CharField(max_length=5, verbose_name='Title', null=True, blank=True)
     first_name = models.CharField(max_length=150, verbose_name='First Name')
     last_name = models.CharField(max_length=150, verbose_name='Last Name')
     email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True)
+    alternative_email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True)
     main_phone = PhoneNumberField(null=True, blank=True)
     alternative_phone = PhoneNumberField(null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -32,14 +33,19 @@ class Client(models.Model):
             return str(self.alternative_phone)
 
 class Address(models.Model):
-    id_client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Cliente')
+    TYPE = [
+        ('B', 'Billing Address'),
+        ('S', 'Shipping Address')
+    ]
+    id_client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Cliente', related_name='client_address')
+    type = models.CharField(max_length=1, choices=TYPE, default='B')
     street = models.CharField(max_length=150, verbose_name='Street')
     city_town = models.CharField(max_length=50, verbose_name='City / Town')
     state_province = models.CharField(max_length=150, verbose_name='State / Province')
     zip = models.CharField(max_length=5, verbose_name='ZIP code')
     country = models.CharField(max_length=50, verbose_name='Country')
-    lat = models.DecimalField(max_digits=9, decimal_places=7,  null=True)
-    lon = models.DecimalField(max_digits=9, decimal_places=7,  null=True)
+    lat = models.DecimalField(max_digits=10, decimal_places=7,  null=True)
+    lng = models.DecimalField(max_digits=10, decimal_places=7,  null=True)
     added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

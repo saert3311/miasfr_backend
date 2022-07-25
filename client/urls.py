@@ -1,8 +1,10 @@
 from django.urls import path
 
-from client import views
+from . import views
 
 urlpatterns = [
-    path('clients/all/', views.AllClientsList.as_view()),
-    path('clients/<int:pk>/', views.client_detail_view)
+    path('clients/', views.client_list_view),
+    path('clients/create/', views.client_create_view),
+    path('clients/<int:pk>/', views.client_retrieve_view),
+    path('address/create/', views.address_create_view)
 ]
