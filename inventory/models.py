@@ -16,6 +16,10 @@ class Category(models.Model):
             make_thumbnail(self.icon, self.picture, (100, 100), 'icon')
         super(Category, self).save(*args, **kwargs)
 
+    @property
+    def items_in_category(self):
+        return self.item_category.count()
+
 class Item(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
     sku = models.CharField(max_length=64, verbose_name="SKU")
