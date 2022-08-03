@@ -1,16 +1,26 @@
 from django.db import models
 from django.conf import settings
+from common.images import make_thumbnail
 
 User = settings.AUTH_USER_MODEL
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category Name")
+    picture = models.ImageField(upload_to='category', null=True, blank=True)
+    icon = models.ImageField(upload_to='category', null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='category', null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.picture:
+            make_thumbnail(self.thumbnail, self.picture, (200, 200), 'thumb')
+            make_thumbnail(self.icon, self.picture, (100, 100), 'icon')
+        super(Category, self).save(*args, **kwargs)
 
 class Item(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
     sku = models.CharField(max_length=64, verbose_name="SKU")
     active = models.BooleanField(default=True, verbose_name="Item is Active")
-    picture = models.ImageField()
+    picture = models.ImageField(upload_to='item', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="Category", related_name="item_category")
 
 

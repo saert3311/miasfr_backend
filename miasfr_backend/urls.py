@@ -11,5 +11,5 @@ urlpatterns = [
     path(BASE_API_ENDPOINT, include('djoser.urls.authtoken')),
     path(BASE_API_ENDPOINT, include('client.urls')),
     path('', include('common.urls', namespace='common')),
-    path('', include('inventory.urls', namespace='inventory'))
+    path(BASE_API_ENDPOINT, include('inventory.urls', namespace='inventory'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
