@@ -8,3 +8,23 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
        model = Category
        fields = '__all__'
+
+
+class PriceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Price
+        fields = '__all__'
+
+class ItemCreationSerializer(serializers.ModelSerializer):
+    item_price = serializers.CharField()
+
+    def create(self, validated_data):
+        price = validated_data.pop('item_price')
+        item_instance = Item.objects.create(**validated_data)
+        Price.objects.create(item=item_instance, price=price, user=item_instance.user, current=True)
+        return item_instance
+
+    class Meta:
+        model = Item
+        fields = ['name', 'description', 'sku', 'picture', 'category', 'item_price']

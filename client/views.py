@@ -28,7 +28,6 @@ class ClientCreateAPIView(
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
-        print('Llamo create')
         serializer.save(user=self.request.user)
 
 client_create_view = ClientCreateAPIView.as_view()

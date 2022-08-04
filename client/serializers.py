@@ -29,7 +29,6 @@ class ClientSerializer(serializers.ModelSerializer):
     client_address = AddressSerializer(many=True)
 
     def create(self, validated_data):
-        print(validated_data)
         addresses = validated_data.pop('client_address')
         client_instance = Client.objects.create(**validated_data)
         for address in addresses:

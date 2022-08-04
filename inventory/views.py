@@ -18,3 +18,18 @@ class CategoryMixinView(
         return self.create(request, *args, **kwargs)
 
 category_view = CategoryMixinView.as_view()
+
+class ItemCreateMixinView(
+    mixins.CreateModelMixin,
+    generics.GenericAPIView
+    ):
+    queryset = Item.objects.all()
+    serializer_class = ItemCreationSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+item_create_view = ItemCreateMixinView.as_view()

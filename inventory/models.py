@@ -22,14 +22,24 @@ class Category(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
+    description = models.TextField(verbose_name="Description", null=True, blank=True)
     sku = models.CharField(max_length=64, verbose_name="SKU")
     active = models.BooleanField(default=True, verbose_name="Item is Active")
     picture = models.ImageField(upload_to='item', null=True, blank=True)
+    icon = models.ImageField(upload_to='item', null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='item', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="created_by")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="Category", related_name="item_category")
 
 
     class Meta:
         ordering = ['name']
+
+    def save(self, *args, **kwargs):
+        if self.picture:
+            make_thumbnail(self.thumbnail, self.picture, (200, 200), 'thumb')
+            make_thumbnail(self.icon, self.picture, (100, 100), 'icon')
+        super(Item, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -42,7 +52,7 @@ class Price(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Actual Price")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="created_by")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="price_created_by")
     current = models.BooleanField(default=False, verbose_name="Price is Current")
     item = models.ForeignKey(Item, on_delete=models.PROTECT, verbose_name="Item", related_name="item_price")
 
