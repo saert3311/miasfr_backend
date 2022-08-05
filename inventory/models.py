@@ -81,3 +81,6 @@ class Combo(models.Model):
     name = models.CharField(max_length=50, verbose_name="Name")
     description = models.TextField(verbose_name="Description")
     item = models.ManyToManyField(Item)
+
+    def __str__(self):
+        return self.name
