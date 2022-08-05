@@ -46,7 +46,11 @@ class Item(models.Model):
 
     @property
     def current_price(self):
-        return self.price.price
+        return self.item_price.get(current=True).price
+
+    @property
+    def category_name(self):
+        return self.category.name
 
 class Price(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Actual Price")

@@ -33,3 +33,12 @@ class ItemCreateMixinView(
         serializer.save(user=self.request.user)
 
 item_create_view = ItemCreateMixinView.as_view()
+
+class ItemListMixinView(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Item.objects.exclude(active=False)
+    serializer_class = ItemListSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+item_list_view = ItemListMixinView.as_view()
