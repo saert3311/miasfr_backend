@@ -5,8 +5,11 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import mixins
 from .serializers import *
+import logging
 
 from .models import Client
+
+logger = logging.getLogger(__name__)
 
 class ClientListAPIView(generics.ListAPIView):
     queryset = Client.objects.all().exclude(anon=True)
@@ -49,14 +52,16 @@ def single_client_view(request, *args, **kwargs):
     method = request.method
     if method == 'GET':
         if 'phone' in request.query_params:
-            search = '+' + request.query_params.get('phone')
+            search = request.query_params.get('phone')
+            logger.warning(search)
             try:
-                client_instance = Client.objects.get(Q(main_phone=search) | Q(alternative_phone=search))
+                client_instance = Client.objects.get(Q(main_phone__icontains=search) | Q(alternative_phone__icontains=search))
             except Client.DoesNotExist:
                 return Response({'Not found :('}, status=404)
             except:
                 return Response({'Error :('}, status=404)
             serialized_client = ClientBasicSerializer(client_instance, many=False)
+            logger.warning(serialized_client.data)
             return Response(serialized_client.data)
         elif 'email' in request.query_params:
             search = request.query_params.get('email')
