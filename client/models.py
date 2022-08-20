@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
 
@@ -14,13 +15,19 @@ class Client(models.Model):
     alternative_phone = PhoneNumberField(null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+    anon = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-last_name', ]
+        indexes = [
+            models.Index(fields=['first_name', 'last_name'], name='name_idx'),
+            models.Index(fields=['email', 'alternative_email'], name='email_idx'),
+            models.Index(fields=['main_phone', 'alternative_phone'], name='phone_idx')
+        ]
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-    #acuerdate de agregar validacion para que haya al menos un telefono guardado o email
+
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
@@ -31,6 +38,10 @@ class Client(models.Model):
             return str(self.main_phone)
         else:
             return str(self.alternative_phone)
+
+    @property
+    def last_call(self):
+        return self.client_data.first()
 
 class Address(models.Model):
     TYPE = [
@@ -50,3 +61,22 @@ class Address(models.Model):
 
     def __str__(self):
         return f'{self.id_client.full_name} address'
+
+
+class Call(models.Model):
+    DIRECTIONS = [
+        ('I', 'Inbound'),
+        ('O', 'Outbound')
+    ]
+    id_client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client_data')
+    direction = models.CharField(max_length=1, choices=DIRECTIONS, default='I')
+    id_user = models.ForeignKey(User, on_delete=models.PROTECT)
+    answered = models.BooleanField(default=False)
+    date_time = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.id_client.full_name} {self.date_time}'
+
+    class Meta:
+        ordering = ['-date_time']
+        get_latest_by = 'date_time'

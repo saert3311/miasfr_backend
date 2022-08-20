@@ -1,4 +1,6 @@
 from rest_framework.views import APIView
+from django.db.models import Q
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import mixins
@@ -7,7 +9,7 @@ from .serializers import *
 from .models import Client
 
 class ClientListAPIView(generics.ListAPIView):
-    queryset = Client.objects.all()
+    queryset = Client.objects.all().exclude(anon=True)
     serializer_class = ClientListSerializer
 
 client_list_view = ClientListAPIView.as_view()
@@ -33,13 +35,42 @@ class ClientCreateAPIView(
 client_create_view = ClientCreateAPIView.as_view()
 
 class AddressCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
-    queeryset = Address.objects.all()
+    queryset = Address.objects.all()
     serializer_class = AddressSaveSerializer
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
 address_create_view = AddressCreateAPIView.as_view()
+
+
+@api_view(['GET', 'POST'])
+def single_client_view(request, *args, **kwargs):
+    method = request.method
+    if method == 'GET':
+        if 'phone' in request.query_params:
+            search = '+' + request.query_params.get('phone')
+            try:
+                client_instance = Client.objects.get(Q(main_phone=search) | Q(alternative_phone=search))
+            except Client.DoesNotExist:
+                return Response({'Not found :('}, status=404)
+            except:
+                return Response({'Error :('}, status=404)
+            serialized_client = ClientBasicSerializer(client_instance, many=False)
+            return Response(serialized_client.data)
+        elif 'email' in request.query_params:
+            search = request.query_params.get('email')
+            try:
+                client_instance = Client.objects.get(Q(email__icontains=search) | Q(alternative_email__icontains=search))
+            except Client.DoesNotExist:
+                return Response({'Not found :('}, status=404)
+            except:
+                return Response({'Error :('}, status=404)
+            serialized_client = ClientBasicSerializer(client_instance, many=False)
+            return Response(serialized_client.data)
+        else:
+            return Response({'Unkown search'}, status=404)
+    return Response({'not found'}, status=404)
 
 
 
