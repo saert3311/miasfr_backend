@@ -68,7 +68,7 @@ def single_client_view(request, *args, **kwargs):
             try:
                 client_instance = Client.objects.get(Q(email__icontains=search) | Q(alternative_email__icontains=search))
             except Client.DoesNotExist:
-                return Response({'Not found :('}, status=404)
+                return Response({'Not found :('}, status=200)
             except:
                 return Response({'Error :('}, status=404)
             serialized_client = ClientBasicSerializer(client_instance, many=False)
