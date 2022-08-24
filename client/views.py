@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import mixins
 from .serializers import *
+from common.models import User
 import logging
 
 from .models import Client
@@ -47,7 +48,7 @@ class AddressCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
 address_create_view = AddressCreateAPIView.as_view()
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def single_client_view(request, *args, **kwargs):
     method = request.method
     if method == 'GET':
@@ -78,6 +79,28 @@ def single_client_view(request, *args, **kwargs):
     return Response({'not found'}, status=404)
 
 
+@api_view(['GET', 'POST'])
+def call_create_list_view(request, *args, **kwargs):
+    method = request.method
+
+    if method == "GET":
+        # list view
+        queryset = Call.objects.all()
+        data = CallSerializer(queryset, many=True).data
+        return Response(data)
+    if method == "POST":
+        data = request.data
+        try:
+            user_instance = User.objects.get(email=data['agent_email'])
+        except User.DoesNotExist:
+            return Response({'Unknown user'}, status=200)
+        data.pop('agent_email')
+        data['id_user'] = user_instance.id
+        # create an item
+        serializer = CallSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response({"invalid": "not good data"}, status=400)
 
 
-# Usar perform_create para añadir info de usuario antes de guardar generics.CreateAPIView

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from common.serializers import UserDetailSerializer
-from .models import Client, Address
+from .models import Client, Address, Call
 from django.db.models import Q
 
 class ClientListSerializer(serializers.ModelSerializer):
@@ -86,7 +86,11 @@ class ClientBasicSerializer(serializers.ModelSerializer):
             'email'
         ]
 
+class CallSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Call
+        fields = '__all__'
 
 
 
