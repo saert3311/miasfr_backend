@@ -38,6 +38,18 @@ class ClientCreateAPIView(
 
 client_create_view = ClientCreateAPIView.as_view()
 
+class AnonClientCreateAPIView(
+    mixins.CreateModelMixin,
+    generics.GenericAPIView
+    ):
+    queryset = Client.objects.all()
+    serializer_class = ClientAnonSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+anon_client_create_view = AnonClientCreateAPIView.as_view()
+
 class AddressCreateAPIView(mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressSaveSerializer
@@ -50,6 +62,7 @@ address_create_view = AddressCreateAPIView.as_view()
 
 @api_view(['GET'])
 def single_client_view(request, *args, **kwargs):
+    print(request.data)
     method = request.method
     if method == 'GET':
         if 'phone' in request.query_params:
@@ -81,8 +94,8 @@ def single_client_view(request, *args, **kwargs):
 
 @api_view(['GET', 'POST'])
 def call_create_list_view(request, *args, **kwargs):
+    print(request.data)
     method = request.method
-
     if method == "GET":
         # list view
         queryset = Call.objects.all()

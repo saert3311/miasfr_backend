@@ -2,17 +2,33 @@ from django.db import models
 from django.db.models import Q
 from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 User = settings.AUTH_USER_MODEL
-# Create your models here.
+
+    #Validators functions
+
+def validate_phone(value):
+    client_instance = Client.objects.filter(
+        Q(main_phone=value) | Q(alternative_phone=value))
+    if client_instance.exists():
+        raise ValidationError(f'Phone is registered to {client_instance.first().full_name}')
+
+def validate_email(value):
+    client_instance = Client.objects.filter(
+        Q(email=value) | Q(alternative_email=value))
+    if client_instance.exists():
+        raise ValidationError(f'Email is registered to {client_instance.first().full_name}')
+
+    #And models
 
 class Client(models.Model):
     first_name = models.CharField(max_length=150, verbose_name='First Name')
     last_name = models.CharField(max_length=150, verbose_name='Last Name')
-    email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True)
-    alternative_email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True)
-    main_phone = PhoneNumberField(null=True, blank=True)
-    alternative_phone = PhoneNumberField(null=True, blank=True)
+    email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True, validators=[validate_email])
+    alternative_email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True, validators=[validate_email])
+    main_phone = PhoneNumberField(null=True, blank=True, validators=[validate_phone])
+    alternative_phone = PhoneNumberField(null=True, blank=True, validators=[validate_phone])
     added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     anon = models.BooleanField(default=False)
