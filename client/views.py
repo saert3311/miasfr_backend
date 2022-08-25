@@ -96,6 +96,7 @@ def single_client_view(request, *args, **kwargs):
 
 @api_view(['GET', 'POST'])
 def call_create_list_view(request, *args, **kwargs):
+    logger.warning(request.data)
     method = request.method
     if method == "GET":
         # list view
