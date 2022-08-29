@@ -110,8 +110,8 @@ def call_create_list_view(request, *args, **kwargs):
     if method == "POST":
         data = request.data
         try:
-            user_instance = User.objects.get(email=data['agent_email'])\
-                .exclude(email__exact="").exclude(email__isnull=True) #exclude automated extensions
+            if data['agent_email'] != '':
+                user_instance = User.objects.get(email=data['agent_email'])
         except User.DoesNotExist:
             return Response({'Unknown user'}, status=200)
         data.pop('agent_email')
