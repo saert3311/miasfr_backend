@@ -109,18 +109,18 @@ def call_create_list_view(request, *args, **kwargs):
         return Response(data)
     if method == "POST":
         data = request.data
-        try:
-            if data['agent_email'] != '':
+        if data['agent_email'] != '':
+            try:
                 user_instance = User.objects.get(email=data['agent_email'])
-        except User.DoesNotExist:
-            return Response({'Unknown user'}, status=200)
-        data.pop('agent_email')
-        data['id_user'] = user_instance.id
-        # create an item
-        serializer = CallSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=201)
+            except User.DoesNotExist:
+                return Response({'Unknown user'}, status=200)
+            data.pop('agent_email')
+            data['id_user'] = user_instance.id
+            # create an item
+            serializer = CallSerializer(data=data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data, status=201)
         return Response({"invalid": "not good data"}, status=400)
 
 
