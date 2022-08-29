@@ -99,14 +99,19 @@ def call_create_list_view(request, *args, **kwargs):
     logger.warning(request.data)
     method = request.method
     if method == "GET":
-        # list view
+        if 'query_self' in request.query_params:
+            limit = request.query_params.get('query_self')
+            queryset = Call.objects.filter(id_user=request.user.id)[:int(limit)]
+            data = CallSerializer(queryset, many=True).data
+            return Response(data)
         queryset = Call.objects.all()
         data = CallSerializer(queryset, many=True).data
         return Response(data)
     if method == "POST":
         data = request.data
         try:
-            user_instance = User.objects.get(email=data['agent_email'])
+            user_instance = User.objects.get(email=data['agent_email'])\
+                .exclude(email__exact="").exclude(email__isnull=True) #exclude automated extensions
         except User.DoesNotExist:
             return Response({'Unknown user'}, status=200)
         data.pop('agent_email')
