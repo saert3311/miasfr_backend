@@ -71,7 +71,8 @@ def single_client_view(request, *args, **kwargs):
             search = request.query_params.get('phone')
             logger.warning(search)
             try:
-                client_instance = Client.objects.get(Q(main_phone__icontains=search) | Q(alternative_phone__icontains=search))
+                client_instance = Client.objects.filter(Q(main_phone__icontains=search) | Q(alternative_phone__icontains=search))\
+                    .first()
             except Client.DoesNotExist:
                 return Response({'Not found :('}, status=200)
             except:

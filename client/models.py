@@ -95,6 +95,8 @@ class Call(models.Model):
 
     @property
     def callerName(self):
+        if self.id_client.anon == True:
+            return self.id_client.main_phone
         return self.id_client.full_name
 
     class Meta:
