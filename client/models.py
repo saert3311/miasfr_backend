@@ -93,6 +93,10 @@ class Call(models.Model):
     def __str__(self):
         return f'{self.id_client.full_name} {self.date_time}'
 
+    @property
+    def callerName(self):
+        return self.id_client.full_name
+
     class Meta:
         ordering = ['-date_time']
         get_latest_by = 'date_time'

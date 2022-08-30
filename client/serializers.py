@@ -74,10 +74,9 @@ class ClientBasicSerializer(serializers.ModelSerializer):
         ]
 
 class CallSerializer(serializers.ModelSerializer):
+    callerName = serializers.CharField(read_only=True)
 
     class Meta:
         model = Call
         fields = '__all__'
-
-
 
