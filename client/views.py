@@ -70,25 +70,18 @@ def single_client_view(request, *args, **kwargs):
         if 'phone' in request.query_params:
             search = request.query_params.get('phone')
             logger.warning(search)
-            try:
-                client_instance = Client.objects.filter(Q(main_phone__icontains=search) | Q(alternative_phone__icontains=search))\
-                    .first()
-            except Client.DoesNotExist:
+            client_instance = Client.objects.filter(Q(main_phone__icontains=search) | Q(alternative_phone__icontains=search))
+            if not client_instance.exists():
                 return Response({'Not found :('}, status=200)
-            except:
-                return Response({'Error :('}, status=404)
-            serialized_client = ClientBasicSerializer(client_instance, many=False)
+            serialized_client = ClientBasicSerializer(client_instance.first(), many=False)
             logger.warning(serialized_client.data)
             return Response(serialized_client.data)
         elif 'email' in request.query_params:
             search = request.query_params.get('email')
-            try:
-                client_instance = Client.objects.get(Q(email__icontains=search) | Q(alternative_email__icontains=search))
-            except Client.DoesNotExist:
+            client_instance = Client.objects.filter(Q(email__icontains=search) | Q(alternative_email__icontains=search))
+            if not client_instance.exists():
                 return Response({'Not found :('}, status=200)
-            except:
-                return Response({'Error :('}, status=404)
-            serialized_client = ClientBasicSerializer(client_instance, many=False)
+            serialized_client = ClientBasicSerializer(client_instance.first(), many=False)
             return Response(serialized_client.data)
         else:
             return Response({'Unkown search'}, status=404)
