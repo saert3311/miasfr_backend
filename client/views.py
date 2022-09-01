@@ -90,6 +90,23 @@ def single_client_view(request, *args, **kwargs):
 
 @api_view(['GET', 'POST'])
 def call_create_list_view(request, *args, **kwargs):
+    def call_data(call_data):
+        pre_data = {}
+        if call_data['type'] == 'Inbound':
+            pre_data['direction'] = 'I'
+        if call_data['type'] == 'Outbound':
+            pre_data['direction'] = 'O'
+        pre_data['answered'] = True
+        if call_data['type'] == 'Missed':
+            pre_data['direction'] = 'I'
+            pre_data['answered'] = False
+        if call_data['type'] == 'Notanswered':
+            pre_data['direction'] = 'O'
+            pre_data['answered'] = False
+        call_data.pop('type')
+        return {**call_data, **pre_data}
+
+
     logger.warning(request.data)
     method = request.method
     if method == "GET":
@@ -108,10 +125,12 @@ def call_create_list_view(request, *args, **kwargs):
                 user_instance = User.objects.get(email=data['agent_email'])
             except User.DoesNotExist:
                 return Response({'Unknown user'}, status=200)
-            data.pop('agent_email')
-            data['id_user'] = user_instance.id
+            presave = call_data(data) #add data of call type
+            presave.pop('agent_email')
+            presave['id_user'] = user_instance.id
+
             # create an item
-            serializer = CallSerializer(data=data)
+            serializer = CallSerializer(data=presave)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response(serializer.data, status=201)
