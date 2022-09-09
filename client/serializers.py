@@ -47,6 +47,21 @@ class ClientSerializer(serializers.ModelSerializer):
             Address.objects.create(id_client=client_instance, **address)
         return client_instance
 
+    def update(self, instance, validated_data):
+        addresses = validated_data.pop('client_address')
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.alternative_email = validated_data.get('alternative_email', instance.alternative_email)
+        instance.main_phone = validated_data.get('main_phone', instance.main_phone)
+        instance.alternative_phone = validated_data.get('alternative_phone', instance.alternative_phone)
+        instance.user = validated_data.get('user', instance.user)
+        instance.anon = validated_data.get('anon', instance.anon)
+        instance.save()
+        for address in addresses:
+            Address.objects.create(id_client=instance, **address)
+        return instance
+
     class Meta:
         model = Client
         fields = [
@@ -75,6 +90,8 @@ class ClientBasicSerializer(serializers.ModelSerializer):
 
 class CallSerializer(serializers.ModelSerializer):
     callerName = serializers.CharField(read_only=True)
+    rawPhone = serializers.CharField(read_only=True)
+    is_anon = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = Call

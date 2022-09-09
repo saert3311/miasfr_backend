@@ -33,3 +33,7 @@ class ItemListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ['id', 'name', 'sku', 'category_name', 'current_price', 'icon']
+
+
+class StaticsSerializer(serializers.Serializer):
+    customers_total = serializers.IntegerField()

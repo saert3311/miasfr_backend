@@ -26,6 +26,7 @@ client_retrieve_view = ClientRetrieveAPIView.as_view()
 
 class ClientCreateAPIView(
     mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
     generics.GenericAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
@@ -34,6 +35,12 @@ class ClientCreateAPIView(
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def perform_update(self, serializer):
         serializer.save(user=self.request.user)
 
 client_create_view = ClientCreateAPIView.as_view()

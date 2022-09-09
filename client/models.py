@@ -10,13 +10,13 @@ User = settings.AUTH_USER_MODEL
 
 def validate_phone(value):
     client_instance = Client.objects.filter(
-        Q(main_phone=value) | Q(alternative_phone=value))
+        Q(main_phone=value) | Q(alternative_phone=value)).exclude(anon=True)
     if client_instance.exists():
         raise ValidationError(f'Phone is registered to {client_instance.first().full_name}')
 
 def validate_email(value):
     client_instance = Client.objects.filter(
-        Q(email=value) | Q(alternative_email=value))
+        Q(email=value) | Q(alternative_email=value)).exclude(anon=True)
     if client_instance.exists():
         raise ValidationError(f'Email is registered to {client_instance.first().full_name}')
 
@@ -25,9 +25,9 @@ def validate_email(value):
 class Client(models.Model):
     first_name = models.CharField(max_length=150, verbose_name='First Name')
     last_name = models.CharField(max_length=150, verbose_name='Last Name')
-    email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True, validators=[validate_email])
+    email = models.EmailField(max_length=100, unique=True, verbose_name='Email', null=True, blank=True, validators=[validate_email])
     alternative_email = models.EmailField(max_length=100, verbose_name='Email', null=True, blank=True, validators=[validate_email])
-    main_phone = PhoneNumberField(null=True, blank=True, validators=[validate_phone])
+    main_phone = PhoneNumberField(null=True, unique=True, blank=True, validators=[validate_phone])
     alternative_phone = PhoneNumberField(null=True, blank=True, validators=[validate_phone])
     added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
@@ -96,8 +96,15 @@ class Call(models.Model):
     @property
     def callerName(self):
         if self.id_client.anon == True:
-            return self.id_client.main_phone
+            return self.id_client.main_phone.as_national
         return self.id_client.full_name
+
+    @property
+    def rawPhone(self):
+        return self.id_client.main_phone.as_e164
+
+    def is_anon(self):
+        return  self.id_client.anon
 
     class Meta:
         ordering = ['-date_time']

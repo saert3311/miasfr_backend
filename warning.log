@@ -1,0 +1,776 @@
+17542141190
+{'id': 881, 'first_name': 'Taj', 'last_name': 'White', 'main_phone': '+17542141190', 'alternative_phone': '', 'email': 'tjkarchdesign@live.com'}
+17542141190
+{'id': 881, 'first_name': 'Taj', 'last_name': 'White', 'main_phone': '+17542141190', 'alternative_phone': '', 'email': 'tjkarchdesign@live.com'}
+Internal Server Error: /api/v1/calls
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\utils\deprecation.py", line 135, in __call__
+    response = self.process_request(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\middleware\common.py", line 54, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\middleware\common.py", line 88, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/v1/calls/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Call' object has no attribute 'agent_email'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 91, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `agent_email` on serializer `CallSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Call` instance.
+Original exception text was: 'Call' object has no attribute 'agent_email'.
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 91, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 479, in to_internal_value
+    for field in fields:
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 362, in _writable_fields
+    for field in self.fields.values():
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'agent_email' was declared on serializer CallSerializer, but has not been included in the 'fields' option.
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 90, in call_create_list_view
+    serializer = CallSerializer(id_user=user_instance, **data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 116, in __init__
+    super().__init__(**kwargs)
+TypeError: __init__() got an unexpected keyword argument 'id_user'
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 90, in call_create_list_view
+    serializer = CallSerializer(id_user=user_instance, **data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 116, in __init__
+    super().__init__(**kwargs)
+TypeError: __init__() got an unexpected keyword argument 'id_user'
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 90, in call_create_list_view
+    serializer = CallSerializer(**data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 116, in __init__
+    super().__init__(**kwargs)
+TypeError: __init__() got an unexpected keyword argument 'direction'
+Bad Request: /api/v1/calls/
+Bad Request: /api/v1/calls/
+Not Found: /favicon.ico
+1234567890
+Bad Request: /api/v1/clients/anon/
+Bad Request: /api/v1/clients/anon/
+Bad Request: /api/v1/clients/anon/
+17863441867
+{'id': 488, 'first_name': 'Arturo', 'last_name': 'Mesa', 'main_phone': '+17862262614', 'alternative_phone': '+17863441867', 'email': 'meza3333@hotmail.com'}
+Bad Request: /api/v1/clients/create/
+17863441867
+{'id': 488, 'first_name': 'Arturo', 'last_name': 'Mesa', 'main_phone': '+17862262614', 'alternative_phone': '+17863441867', 'email': 'meza3333@hotmail.com'}
+17863441867
+{'id': 488, 'first_name': 'Arturo', 'last_name': 'Mesa', 'main_phone': '+17862262614', 'alternative_phone': '+17863441867', 'email': 'meza3333@hotmail.com'}
+Bad Request: /api/v1/calls/
+Not Found: /v1/clients/search
+Unauthorized: /api/v1/clients/search
+17728349128
+{'id': 897, 'first_name': 'Wayne', 'last_name': 'Sowers', 'main_phone': '+17728349128', 'alternative_phone': '', 'email': 'wsowers711@gmail.com'}
+17728349129
+Bad Request: /api/v1/clients/anon/
+17728349123
+Bad Request: /api/v1/clients/anon/
+17728349123
+Internal Server Error: /api/v1/clients/anon/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.NotNullViolation: el valor nulo en la columna «user_id» de la relación «client_client» viola la restricción de no nulo
+DETAIL:  La fila que falla contiene (11, New 3CX, Contact, null, +17728349123, null, 2022-08-25 02:49:15.320163+00, null, null, t).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 49, in post
+    return self.create(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\query.py", line 671, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\base.py", line 831, in save
+    self.save_base(
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\base.py", line 882, in save_base
+    updated = self._save_table(
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\base.py", line 1025, in _save_table
+    results = self._do_insert(
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\base.py", line 1066, in _do_insert
+    return manager._insert(
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\query.py", line 1790, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1657, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: el valor nulo en la columna «user_id» de la relación «client_client» viola la restricción de no nulo
+DETAIL:  La fila que falla contiene (11, New 3CX, Contact, null, +17728349123, null, 2022-08-25 02:49:15.320163+00, null, null, t).
+
+17728349123
+Bad Request: /api/v1/calls/
+Not Found: /favicon.ico
+Bad Request: /api/v1/calls/
+{}
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 104, in call_create_list_view
+    queryset = Call.objects.filter(id_user=request.user.id)[:limit]
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\db\models\query.py", line 422, in __getitem__
+    or (k.stop is not None and k.stop < 0)
+TypeError: '<' not supported between instances of 'str' and 'int'
+{}
+{}
+{}
+Internal Server Error: /api/v1/calls/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 105, in call_create_list_view
+    data = CallSerializer(queryset, many=True).data
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 686, in to_representation
+    return [
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 507, in to_representation
+    for field in fields:
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 357, in fields
+    fields[key] = value
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\utils\serializer_helpers.py", line 152, in __setitem__
+    field.bind(field_name=key, parent=self.serializer)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 378, in bind
+    assert self.source != field_name, (
+AssertionError: It is redundant to specify `source='callerName'` on field 'CharField' in serializer 'CallSerializer', because it is the same as the field name. Remove the `source` keyword argument.
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+Not Found: /favicon.ico
+{}
+{}
+Not Found: /api/v1/client/search
+17866838924
+Internal Server Error: /api/v1/clients/search
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 75, in single_client_view
+    if not client_instance.exists():
+AttributeError: 'NoneType' object has no attribute 'exists'
+17866838924
+17028892214
+Internal Server Error: /api/v1/clients/search
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 457, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 97, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'QuerySet' object has no attribute 'first_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 77, in single_client_view
+    logger.warning(serialized_client.data)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\fields.py", line 490, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `first_name` on serializer `ClientBasicSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `QuerySet` instance.
+Original exception text was: 'QuerySet' object has no attribute 'first_name'.
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+{'id_client': 12, 'agent_email': 'jose.duarte@outlook.com', 'date_time': '2022-09-01T17:56:30Z', 'agent': '100', 'number': '', 'type': 'Inbound'}
+{'id_client': 12, 'agent_email': 'jose.duarte@outlook.com', 'date_time': '2022-09-01T17:56:30Z', 'agent': '100', 'number': '', 'type': 'Inbound'}
+{'id_client': 12, 'agent_email': 'jose.duarte@outlook.com', 'date_time': '2022-09-01T17:56:30Z', 'agent': '100', 'number': '', 'type': 'Inbound'}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'date_time': '2022-09-01T18:04:43Z', 'agent': '100', 'number': '1234567890', 'type': 'Inbound'}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'date_time': '2022-09-01T18:04:43Z', 'agent': '100', 'number': '1234567890', 'type': 'Inbound'}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'date_time': '2022-09-01T18:04:43Z', 'agent': '100', 'type': 'Inbound'}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'direction': 'I', 'answered': True, 'date_time': '2022-09-02T11:29:56Z', 'agent': '100', 'number': ''}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'direction': 'I', 'answered': True, 'date_time': '2022-09-02T11:29:56Z', 'agent': '100', 'number': ''}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'direction': 'I', 'answered': True, 'date_time': '2022-09-02T11:29:56Z', 'agent': '100', 'number': ''}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'direction': 'I', 'answered': True, 'date_time': '2022-09-02T11:29:56Z', 'agent': '100', 'number': ''}
+{'id_client': 12, 'agent_email': 'saert@outlook.cl', 'direction': 'I', 'answered': True, 'date_time': '2022-09-02T11:29:56Z', 'agent': '100', 'number': ''}
+{}
+17028892214
+{'id': 3, 'first_name': 'Juan', 'last_name': 'Perez', 'main_phone': '+17028892214', 'alternative_phone': '', 'email': 'juan@email.com'}
+{}
+Bad Request: /api/v1/token/login/
+Unauthorized: /api/v1/token/logout/
+Bad Request: /api/v1/token/login/
+Unauthorized: /api/v1/token/logout/
+Bad Request: /api/v1/token/login/
+Unauthorized: /api/v1/token/logout/
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+Internal Server Error: /api/v1/clients/create/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 41, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\generics.py", line 88, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+AssertionError: Expected view ClientCreateAPIView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+{}
+Internal Server Error: /api/v1/clients/create/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 41, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\generics.py", line 88, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+AssertionError: Expected view ClientCreateAPIView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+Internal Server Error: /api/v1/clients/create/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 42, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\generics.py", line 88, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+AssertionError: Expected view ClientCreateAPIView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+Internal Server Error: /api/v1/clients/create/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 41, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 65, in update
+    instance = self.get_object()
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\generics.py", line 88, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+AssertionError: Expected view ClientCreateAPIView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+{}
+Not Found: /api/v1/clients/create/undefined/
+{}
+Bad Request: /api/v1/clients/create/12/
+Bad Request: /api/v1/clients/create/12/
+Bad Request: /api/v1/clients/create/12/
+Internal Server Error: /api/v1/clients/create/12/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 41, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 44, in perform_update
+    serializer.save(user=self.request.user)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+TypeError: update() takes 2 positional arguments but 3 were given
+Internal Server Error: /api/v1/clients/create/12/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 41, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 44, in perform_update
+    serializer.save(user=self.request.user)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+TypeError: update() takes 2 positional arguments but 3 were given
+Internal Server Error: /api/v1/clients/create/12/
+Traceback (most recent call last):
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\django\views\generic\base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 41, in put
+    return self.update(request, *args, **kwargs)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "C:\Proyectos\miasfr_backend\client\views.py", line 44, in perform_update
+    serializer.save(user=self.request.user)
+  File "C:\Proyectos\miasfr_backend\venv\lib\site-packages\rest_framework\serializers.py", line 207, in save
+    self.instance = self.update(self.instance, validated_data)
+  File "C:\Proyectos\miasfr_backend\client\serializers.py", line 52, in update
+    instance = Client.objects.save(**validated_data)
+AttributeError: 'Manager' object has no attribute 'save'
+{}
+{}
+{}
+{}
+{}
+{}
+{}
+{}
