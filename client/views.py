@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import mixins
+from rest_framework.pagination import PageNumberPagination
 from .serializers import *
 from common.models import User
 import logging
@@ -97,18 +98,14 @@ def single_client_view(request, *args, **kwargs):
 
 @api_view(['GET', 'POST'])
 def call_create_list_view(request, *args, **kwargs):
-
-    logger.warning(request.data)
     method = request.method
     if method == "GET":
-        if 'query_self' in request.query_params:
-            limit = request.query_params.get('query_self')
-            queryset = Call.objects.filter(id_user=request.user.id)[:int(limit)]
-            data = CallSerializer(queryset, many=True).data
-            return Response(data)
-        queryset = Call.objects.all()
-        data = CallSerializer(queryset, many=True).data
-        return Response(data)
+        paginator = PageNumberPagination()
+        paginator.page_size = 10
+        queryset = Call.objects.filter(id_user=request.user.id)
+        result_page = paginator.paginate_queryset(queryset, request)
+        serializer = CallSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
     if method == "POST":
         data = request.data
         if data['agent_email'] != '':
