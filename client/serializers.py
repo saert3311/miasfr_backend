@@ -85,7 +85,8 @@ class ClientBasicSerializer(serializers.ModelSerializer):
             'last_name',
             'main_phone',
             'alternative_phone',
-            'email'
+            'email',
+            'alternative_email'
         ]
 
 class CallSerializer(serializers.ModelSerializer):
@@ -97,3 +98,10 @@ class CallSerializer(serializers.ModelSerializer):
         model = Call
         fields = '__all__'
 
+
+class CallClientSerializer(serializers.ModelSerializer):
+    client_info = ClientBasicSerializer(source='id_client', read_only=True)
+
+    class Meta:
+        model = Call
+        fields = '__all__'
