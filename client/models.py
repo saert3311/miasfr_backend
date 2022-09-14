@@ -106,6 +106,9 @@ class Call(models.Model):
     def is_anon(self):
         return  self.id_client.anon
 
+    def user_name(self):
+        return f'{self.id_user.first_name} {self.id_user.last_name}'
+
     class Meta:
         ordering = ['-date_time']
         get_latest_by = 'date_time'

@@ -13,6 +13,11 @@ from .models import Client
 
 logger = logging.getLogger(__name__)
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
 class ClientListAPIView(generics.ListAPIView):
     queryset = Client.objects.all().exclude(anon=True)
     serializer_class = ClientListSerializer
@@ -130,6 +135,20 @@ class LastCallDetailView(APIView):
 
 
 last_call_info_view = LastCallDetailView.as_view()
+
+class AllCallsView(
+    mixins.ListModelMixin,
+    generics.GenericAPIView
+    ):
+    queryset = Call.objects.all()[:200]
+    serializer_class = CallSerializer
+    pagination_class = StandardResultsSetPagination
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+all_calls_view = AllCallsView.as_view()
 
 
 

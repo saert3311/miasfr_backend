@@ -93,6 +93,7 @@ class CallSerializer(serializers.ModelSerializer):
     callerName = serializers.CharField(read_only=True)
     rawPhone = serializers.CharField(read_only=True)
     is_anon = serializers.BooleanField(read_only=True)
+    user_name = serializers.CharField(read_only=True)
 
     class Meta:
         model = Call
