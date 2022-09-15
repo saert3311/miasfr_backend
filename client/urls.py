@@ -12,5 +12,6 @@ urlpatterns = [
     path('address/create/', views.address_create_view),
     path('calls/', views.call_create_list_view),
     path('calls/all/', views.all_calls_view),
-    path('calls/latest/', views.last_call_info_view)
+    path('calls/latest/', views.last_call_info_view),
+    path('calls/resume/', views.resume_calls_view)
 ]

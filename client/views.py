@@ -7,6 +7,7 @@ from rest_framework import mixins
 from rest_framework.pagination import PageNumberPagination
 from .serializers import *
 from common.models import User
+from django.db.models import Count
 import logging
 
 from .models import Client
@@ -149,6 +150,23 @@ class AllCallsView(
 
 
 all_calls_view = AllCallsView.as_view()
+
+class ResumeCallsView(APIView):
+    def get(self, request, format=None):
+        inbound = Count('call', filter=Q(call__answered=True, call__direction='I'))
+        outbound = Count('call', filter=Q(call__answered=True, call__direction='O'))
+        missed = Count('call', filter=Q(call__answered=False, call__direction='I'))
+        not_answered = Count('call', filter=Q(call__answered=False, call__direction='O'))
+        queryset = User.objects.annotate(inbound=inbound).annotate(outbound=outbound).annotate(missed=missed)\
+            .annotate(not_answered=not_answered)
+
+        if queryset.exists():
+            serialized_queryset = CallResumeSerializer(queryset, many=True)
+            return Response(serialized_queryset.data)
+
+        return Response({'error': 'No Data'}, status=400)
+
+resume_calls_view = ResumeCallsView.as_view()
 
 
 

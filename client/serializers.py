@@ -106,3 +106,11 @@ class CallClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Call
         fields = '__all__'
+
+
+class CallResumeSerializer(serializers.Serializer):
+    get_full_name = serializers.CharField()
+    inbound = serializers.IntegerField()
+    outbound = serializers.IntegerField()
+    missed = serializers.IntegerField()
+    not_answered = serializers.IntegerField()
