@@ -1,3 +1,5 @@
+import datetime
+
 from rest_framework.views import APIView
 from django.db.models import Q
 from rest_framework.decorators import api_view
@@ -153,18 +155,28 @@ all_calls_view = AllCallsView.as_view()
 
 class ResumeCallsView(APIView):
     def get(self, request, format=None):
+        range = request.query_params.get('range')
         inbound = Count('call', filter=Q(call__answered=True, call__direction='I'))
         outbound = Count('call', filter=Q(call__answered=True, call__direction='O'))
         missed = Count('call', filter=Q(call__answered=False, call__direction='I'))
         not_answered = Count('call', filter=Q(call__answered=False, call__direction='O'))
-        queryset = User.objects.annotate(inbound=inbound).annotate(outbound=outbound).annotate(missed=missed)\
+        today = datetime.datetime.today()
+        if range == 'today':
+           ranged_queryset = User.objects.filter(call__date_time__day=today.day)
+        elif range == 'week':
+           ranged_queryset = User.objects.filter(call__date_time__gte=today - datetime.timedelta(days=7))
+        elif range == 'month':
+            ranged_queryset = User.objects.filter(call__date_time__month=today.month)
+        elif range == 'year':
+            ranged_queryset = User.objects.filter(call__date_time__year=today.year)
+        else:
+            ranged_queryset = User.objects.all()
+        queryset = ranged_queryset.annotate(inbound=inbound).annotate(outbound=outbound).annotate(missed=missed)\
             .annotate(not_answered=not_answered)
-
         if queryset.exists():
             serialized_queryset = CallResumeSerializer(queryset, many=True)
             return Response(serialized_queryset.data)
-
-        return Response({'error': 'No Data'}, status=400)
+        return Response({'error': 'No Data'}, status=200)
 
 resume_calls_view = ResumeCallsView.as_view()
 
