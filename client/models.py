@@ -57,7 +57,7 @@ class Client(models.Model):
 
     @property
     def last_call(self):
-        return self.client_data.first()
+        return self.client_data.first().date_time
 
 class Address(models.Model):
     TYPE = [

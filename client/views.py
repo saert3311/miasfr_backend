@@ -1,5 +1,6 @@
 import datetime
 
+from rest_framework import filters
 from rest_framework.views import APIView
 from django.db.models import Q
 from rest_framework.decorators import api_view
@@ -24,6 +25,11 @@ class StandardResultsSetPagination(PageNumberPagination):
 class ClientListAPIView(generics.ListAPIView):
     queryset = Client.objects.all().exclude(anon=True)
     serializer_class = ClientListSerializer
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['first_name', 'last_name', 'email', 'alternative_email', 'main_phone', 'alternative_phone']
+    ordering_fields = ['first_name', 'last_name']
+    ordering = ['first_name', 'last_name']
 
 client_list_view = ClientListAPIView.as_view()
 

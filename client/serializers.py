@@ -10,7 +10,8 @@ class ClientListSerializer(serializers.ModelSerializer):
             'id',
             'full_name',
             'email',
-            'any_phone'
+            'any_phone',
+            'last_call'
         )
 
 class AddressSerializer(serializers.ModelSerializer):
