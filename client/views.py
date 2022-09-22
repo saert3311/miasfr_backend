@@ -29,7 +29,7 @@ class ClientListAPIView(generics.ListAPIView):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['first_name', 'last_name', 'email', 'alternative_email', 'main_phone', 'alternative_phone']
     ordering_fields = ['first_name', 'last_name']
-    ordering = ['first_name', 'last_name']
+    ordering = ['first_name']
 
 client_list_view = ClientListAPIView.as_view()
 

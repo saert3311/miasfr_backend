@@ -52,6 +52,16 @@ class Item(models.Model):
     def category_name(self):
         return self.category.name
 
+class Period(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Name")
+    days = models.IntegerField(default=0, verbose_name="Quantity", unique=True)
+
+    class Meta:
+        ordering = ['days']
+
+    def __str__(self):
+        return self.name
+
 class Price(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Actual Price")
     created = models.DateTimeField(auto_now_add=True)
@@ -59,12 +69,16 @@ class Price(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="price_created_by")
     current = models.BooleanField(default=False, verbose_name="Price is Current")
     item = models.ForeignKey(Item, on_delete=models.PROTECT, verbose_name="Item", related_name="item_price")
+    period = models.ForeignKey(Period, on_delete=models.PROTECT, verbose_name="Period Price", related_name="period_price",
+                               null=True, blank=True)
 
     class Meta:
         ordering = ['-updated']
 
     def __str__(self):
-        return f'{self.item.name} : {self.price}'
+        return f'{self.item.name} : {self.price} {self.period.name}'
+
+
 
 class Stock(models.Model):
     quantity = models.IntegerField(default=0, verbose_name="Quantity")
