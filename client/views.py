@@ -1,8 +1,6 @@
 import datetime
-
 from rest_framework import filters
 from rest_framework.views import APIView
-from django.db.models import Q
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
@@ -11,11 +9,8 @@ from rest_framework.pagination import PageNumberPagination
 from .serializers import *
 from common.models import User
 from django.db.models import Count
-import logging
 
 from .models import Client
-
-logger = logging.getLogger(__name__)
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10

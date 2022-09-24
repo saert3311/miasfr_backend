@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
 from common.images import make_thumbnail
@@ -45,8 +46,8 @@ class Item(models.Model):
         return self.name
 
     @property
-    def current_price(self):
-        return self.item_price.get(current=True).price
+    def current_prices(self):
+        return self.item_price.filter(current=True)
 
     @property
     def category_name(self):
@@ -74,6 +75,19 @@ class Price(models.Model):
 
     class Meta:
         ordering = ['-updated']
+
+    @property
+    def period_days(self):
+        return self.period.name
+
+    def clean(self):
+        if self.price == 0 or self.price == '':
+            raise ValidationError(
+                {'Price': "This price is invalid"})
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.item.name} : {self.price} {self.period.name}'
