@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='client',
-            constraint=models.UniqueConstraint(fields=('main_phone', 'alternative_phone'), name='unique_phone', violation_error_message='Phone is already in use'),
+            constraint=models.UniqueConstraint(fields=('main_phone', 'alternative_phone'), name='unique_phone'),
         ),
     ]
