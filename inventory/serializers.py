@@ -28,7 +28,6 @@ class ItemCreationSerializer(serializers.ModelSerializer):
     item_price = serializers.CharField(max_length=200)
 
     def create(self, validated_data):
-        print(validated_data)
         pricing = json.loads(validated_data.pop('item_price'))
         item_instance = Item.objects.create(**validated_data)
         for item in pricing:
@@ -49,5 +48,15 @@ class ItemListSerializer(serializers.ModelSerializer):
 
 class StaticsSerializer(serializers.Serializer):
     customers_total = serializers.IntegerField()
+
+
+class ItemDetailSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.name')
+    username = serializers.CharField(source='user.get_full_name')
+    item_price = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Item
+        fields = ['name', 'description', 'sku', 'picture', 'category_name', 'username', 'created', 'item_price']
 
 

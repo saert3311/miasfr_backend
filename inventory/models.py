@@ -21,17 +21,20 @@ class Category(models.Model):
     def items_in_category(self):
         return self.item_category.count()
 
+    def __str__(self):
+        return self.name
+
 class Item(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
     description = models.TextField(verbose_name="Description", null=True, blank=True)
-    sku = models.CharField(max_length=64, verbose_name="SKU")
+    sku = models.CharField(max_length=64, verbose_name="SKU", unique=True)
     active = models.BooleanField(default=True, verbose_name="Item is Active")
     picture = models.ImageField(upload_to='item', null=True, blank=True)
     icon = models.ImageField(upload_to='item', null=True, blank=True)
     thumbnail = models.ImageField(upload_to='item', null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="created_by")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="Category", related_name="item_category")
-
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['name']
@@ -90,7 +93,7 @@ class Price(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.item.name} : {self.price} {self.period.name}'
+        return f'${self.price} {self.period.name}'
 
 
 

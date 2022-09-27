@@ -69,7 +69,8 @@ class PeriodMixinView(
 
 period_list_view = PeriodMixinView.as_view()
 
-@api_view(['POST'])
-def creation_test(request, *args, **kwargs):
-    print(request.data)
-    return Response({'result': 'recieved'}, status=200)
+class ItemRetrieveApiView(generics.RetrieveAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemDetailSerializer
+
+item_retrieve_view = ItemRetrieveApiView.as_view()
