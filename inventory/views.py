@@ -74,3 +74,17 @@ class ItemRetrieveApiView(generics.RetrieveAPIView):
     serializer_class = ItemDetailSerializer
 
 item_retrieve_view = ItemRetrieveApiView.as_view()
+
+class ItemPricesMixinView(
+    mixins.ListModelMixin,
+    generics.GenericAPIView):
+    serializer_class = PriceDetailSerializer
+
+    def get_queryset(self):
+        item_id = self.kwargs['pk']
+        return Price.objects.filter(item_id=item_id)
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+item_prices_view = ItemPricesMixinView.as_view()

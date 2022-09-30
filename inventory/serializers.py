@@ -19,6 +19,15 @@ class PriceSerializer(serializers.ModelSerializer):
         model = Price
         fields = ['price', 'period_days']
 
+class PriceDetailSerializer(serializers.ModelSerializer):
+    user_fullname = serializers.CharField(source='user.get_fullname', read_only=True)
+    period_name = serializers.CharField(source='period.name', read_only=True)
+    period_days = serializers.CharField(source='period.days', read_only=True)
+
+    class Meta:
+        model = Price
+        exclude = ['user', 'item', 'period', 'updated']
+
 class PeriodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Period
