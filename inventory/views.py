@@ -37,7 +37,6 @@ class ItemCreateMixinView(
     serializer_class = ItemCreationSerializer
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
         return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
@@ -88,3 +87,17 @@ class ItemPricesMixinView(
         return self.list(request, *args, **kwargs)
 
 item_prices_view = ItemPricesMixinView.as_view()
+
+class ItemUpdateMixinView(
+    mixins.UpdateModelMixin,
+    generics.GenericAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemUpdateSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
+
+item_update_view = ItemUpdateMixinView.as_view()

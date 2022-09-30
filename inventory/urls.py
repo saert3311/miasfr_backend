@@ -10,5 +10,6 @@ urlpatterns = [
     path('inventory/item/', views.item_list_view),
     path('inventory/item/<int:pk>/', views.item_retrieve_view),
     path('inventory/item/<int:pk>/prices/', views.item_prices_view),
-    path('inventory/item/create/', views.item_create_view)
+    path('inventory/item/<int:pk>/update/', views.item_update_view),
+    path('inventory/item/create/', views.item_create_view),
 ]

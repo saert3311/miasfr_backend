@@ -48,6 +48,12 @@ class ItemCreationSerializer(serializers.ModelSerializer):
         model = Item
         fields = ['name', 'description', 'sku', 'picture', 'category', 'item_price']
 
+class ItemUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Item
+        exclude = ['active', 'user']
+
 class ItemListSerializer(serializers.ModelSerializer):
     current_prices = PriceSerializer(many=True, read_only=True)
     class Meta:
@@ -66,6 +72,6 @@ class ItemDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ['name', 'description', 'sku', 'picture', 'category_name', 'username', 'created', 'item_price']
+        fields = ['name', 'description', 'sku', 'picture', 'category_name', 'username', 'created', 'item_price', 'category', 'id']
 
 
