@@ -101,3 +101,18 @@ class ItemUpdateMixinView(
         serializer.save(user=self.request.user)
 
 item_update_view = ItemUpdateMixinView.as_view()
+
+
+class CreatePriceAPIView(
+    mixins.CreateModelMixin,
+    generics.GenericAPIView):
+    queryset = Price.objects.all()
+    serializer_class = PriceCreationSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+item_create_price_view = CreatePriceAPIView.as_view()

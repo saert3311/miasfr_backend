@@ -1,28 +1,13 @@
 from django.test import TestCase
-from client.models import Client
-from django.conf import settings
+from .sms import SMS
 
-User = settings.AUTH_USER_MODEL
+class SmsSendTestCase(TestCase):
+    def setUp(self) -> None:
+        self.my_sms = SMS('Hello World', '+16692574658')
 
-class ClientCreationTestCase(TestCase):
-    def setUp(self):
+    def testCreation(self) -> None:
+        self.assertTrue(isinstance(self.my_sms, SMS))
 
-        Client.objects.create(
-            first_name='Juan',
-            last_name='Prueba',
-            email='prueba@prueba.com',
-            alternative_email='prueba2@email.com',
-            main_phone='+17866094429',
-            alternative_phone='17866094430',
-            user_id=1
-        )
-
-    def test_constraints(self):
-        Client.objects.create(
-            first_name='Juan2',
-            last_name='Prueba2',
-            email='prueba@prueba.com',
-            main_phone='+17866094429',
-            user_id=1
-        )
-
+    def testSending(self) -> None:
+        result = self.my_sms.send()
+        self.assertEqual(result['error']['code'], 'SUCCESS')

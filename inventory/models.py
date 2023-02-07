@@ -4,6 +4,9 @@ from django.conf import settings
 from common.images import make_thumbnail
 
 User = settings.AUTH_USER_MODEL
+#signals
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category Name")
@@ -50,7 +53,7 @@ class Item(models.Model):
 
     @property
     def current_prices(self):
-        return self.item_price.filter(current=True)
+        return self.item_price.filter(current=True).order_by('period__days')
 
     @property
     def category_name(self):
@@ -94,6 +97,15 @@ class Price(models.Model):
 
     def __str__(self):
         return f'${self.price} {self.period.name}'
+
+#after saving new price deactivate old one and making sure only one is active
+@receiver(post_save, sender=Price)
+def price_created_handler(sender, instance, created, *args, **kwargs):
+    if created:
+        old_prices = sender.objects.filter(item=instance.item, period=instance.period, current=True).exclude(id=instance.id)
+        if old_prices.exists():
+            old_prices.update(current=False)
+        sender.objects.filter(id=instance.id).update(current=True) #filter and update to not trigger post_save again
 
 
 

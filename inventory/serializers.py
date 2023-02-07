@@ -33,6 +33,11 @@ class PeriodSerializer(serializers.ModelSerializer):
         model = Period
         fields = '__all__'
 
+class PriceCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Price
+        exclude = ['created', 'updated', 'user']
+
 class ItemCreationSerializer(serializers.ModelSerializer):
     item_price = serializers.CharField(max_length=200)
 
@@ -68,7 +73,7 @@ class StaticsSerializer(serializers.Serializer):
 class ItemDetailSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name')
     username = serializers.CharField(source='user.get_full_name')
-    item_price = serializers.StringRelatedField(many=True)
+    item_price = serializers.StringRelatedField(many=True, source='current_prices')
 
     class Meta:
         model = Item
