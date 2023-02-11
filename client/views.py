@@ -9,8 +9,9 @@ from rest_framework.pagination import PageNumberPagination
 from .serializers import *
 from common.models import User
 from django.db.models import Count
+from .sms import SMS
 
-from .models import Client
+from .models import Client, MessageTemplate, MessageSent
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -181,5 +182,43 @@ class ResumeCallsView(APIView):
 
 resume_calls_view = ResumeCallsView.as_view()
 
+class SentMessageView(generics.ListAPIView):
+    queryset = MessageSent.objects.all()
+    serializer_class = SentMessageSerializer
+    pagination_class = StandardResultsSetPagination
 
+sent_messages_view = SentMessageView.as_view()
 
+@api_view(['POST'])
+def send_sms_view(request, *args, **kwargs) -> Response:
+    """
+    Function to send a sms using the sms class
+    :param request:
+    :param args:
+    :param kwargs:
+    :return: a Response object
+    """
+    try:
+        data = request.data
+        message_object = MessageSent(client_id=data['client_id'], message_id=data['message_id'])
+        message = SMS(message=message_object.message.message, phone=message_object.client.main_phone.as_e164)
+        message.send()
+        message_object.save()
+        return Response({'result':'Message Sent'}, status=200)
+    except Exception as e:
+        return Response({'error': str(e)}, status=400)
+
+@api_view(['GET'])
+def check_balance(request, *args, **kwargs) -> Response:
+    """
+    Function to check current balance with the service
+    :param request:
+    :param args:
+    :param kwargs:
+    :return: a Response object
+    """
+    try:
+        balance = SMS.get_balance()
+        return Response({'balance':balance}, status=200)
+    except Exception as e:
+        return Response({'error': str(e)}, status=400)
