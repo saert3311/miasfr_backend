@@ -112,3 +112,26 @@ class Call(models.Model):
     class Meta:
         ordering = ['-date_time']
         get_latest_by = 'date_time'
+
+
+class MessageTemplate(models.Model):
+    message = models.CharField(max_length=160, verbose_name='Message')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        splitted = self.message.split()[:4]
+        joined = " ".join(splitted)
+        return f'{self.pk} - {joined}'
+
+class MessageSent(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.PROTECT, related_name='client_messaged')
+    message = models.ForeignKey(MessageTemplate, on_delete=models.PROTECT, related_name='msg_template')
+    date_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self):
+        return f'{self.client.first_name} - {self.message.message.split()[:4]}'

@@ -13,5 +13,8 @@ urlpatterns = [
     path('calls/', views.call_create_list_view),
     path('calls/all/', views.all_calls_view),
     path('calls/latest/', views.last_call_info_view),
-    path('calls/resume/', views.resume_calls_view)
+    path('calls/resume/', views.resume_calls_view),
+    path('msj/', views.sent_messages_view),
+    path('msj/balance/', views.check_balance),
+    path('msj/send/', views.send_sms_view),
 ]

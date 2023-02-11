@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from common.serializers import UserDetailSerializer
-from .models import Client, Address, Call
+from .models import Client, Address, Call, MessageSent
 from django.db.models import Q
 
 class ClientListSerializer(serializers.ModelSerializer):
@@ -115,3 +115,17 @@ class CallResumeSerializer(serializers.Serializer):
     outbound = serializers.IntegerField()
     missed = serializers.IntegerField()
     not_answered = serializers.IntegerField()
+
+
+class SentMessageSerializer(serializers.ModelSerializer):
+    client = serializers.StringRelatedField(read_only=True, many=False)
+    message = serializers.StringRelatedField(read_only=True, many=False)
+
+    class Meta:
+        model = MessageSent
+        fields = '__all__'
+
+
+class SendMessageSerializer(serializers.Serializer):
+    client_id = serializers.IntegerField()
+    message_id = serializers.IntegerField()

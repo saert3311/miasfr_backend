@@ -43,7 +43,7 @@ class SMS:
         response = requests.get(url, auth=auth)
         if response.status_code == 200:
             response_dict = response.json()
-            return response_dict.balance
+            return response_dict['balance']
 
     def get_numbers(self) -> list:
         """
@@ -69,6 +69,6 @@ class SMS:
             'from':from_number
         }
         response = requests.post(url, auth=self.auth, data=payload)
-        if response.status_code == 200:
-            response_dict = response.json()
-            return response_dict
+        response.raise_for_status()
+        response_dict = response.json()
+        return response_dict
